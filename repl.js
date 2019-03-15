@@ -1,6 +1,7 @@
 const repl = require("repl");
 const fs = require("fs");
 const vm = require("vm");
+const md5 = require("md5")
 
 const r = repl.start("λ ");
 
@@ -36,7 +37,7 @@ function watch(file, onChange) {
             }, 100)
 
             console.log(`${file}: getting latest`)
-            const md5Current = fs.readFileSync(file)
+            const md5Current = md5(fs.readFileSync(file))
             
             if (md5Current === md5Previous) {
                 return
